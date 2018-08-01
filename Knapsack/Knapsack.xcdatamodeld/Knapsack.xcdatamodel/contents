@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Clothing" representedClassName="Clothing" syncable="YES" codeGenerationType="class"/>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class"/>
+    <entity name="Temperature" representedClassName="Temperature" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="Clothing" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Temperature" positionX="-54" positionY="-9" width="128" height="45"/>
+        <element name="Location" positionX="-36" positionY="9" width="128" height="45"/>
+    </elements>
 </model>
