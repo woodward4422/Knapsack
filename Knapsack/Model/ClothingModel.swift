@@ -10,7 +10,9 @@ import Foundation
 
 struct ClothingModel{
     
-    static func getClothing() -> [String]{
+    static func getClothing(temp: Double) -> [String]{
+        
+
         
         var clothes = ["shirt","shorts","jeans","jacket","shoes"]
         return clothes

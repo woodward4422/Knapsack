@@ -31,11 +31,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let weatherURL = ConstructAPILink.constructWeatherLink(latitude: latitude, longitude: longitude)
         let locationURL = ConstructAPILink.constructLocationLink(latitude: latitude, longitude: longitude)
         WeatherService.getWeather(url: weatherURL) { (temp) in
+        self.clothes = ClothingModel.getClothing(temp: temp)
            let roundedTemp = Int(temp)
             let sanitizedWeatherTemp = String(roundedTemp) + "º"
             
             self.temperatureLabel.text = "\(sanitizedWeatherTemp)"
-            self.clothes = ClothingModel.getClothing()
+            
             print(self.clothes)
             self.tableView.reloadData()
         }
