@@ -23,14 +23,14 @@ struct WeatherService {
             case .success:
                 if let value = response.result.value {
                     let json = JSON(value)
-                  
+               //   print(json)
                     var tempsArray = [Double]()
                    let temperatureArray = json["hourly"]["data"].arrayValue
                     for item in temperatureArray {
                         tempsArray.append(item["temperature"].doubleValue)
                         
                     }
-                  //  print(tempsArray)
+                    print(tempsArray)
                  let sum =  tempsArray.reduce(0,+)
                  let average = sum/Double(tempsArray.count)
                     completion(average)

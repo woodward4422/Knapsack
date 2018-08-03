@@ -11,23 +11,25 @@ import LocationPicker
 class StartTripViewController: UIViewController {
     var longitude: Double?
     var latitude: Double?
+    var gender: Gender?
     @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var genderSegmented: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
     
     @IBAction func locationButtonPressed(_ sender: Any) {
-      locationButton.backgroundColor = UIColor.green
-    let locationPicker = LocationPickerViewController()
-    
+        locationButton.backgroundColor = UIColor.green
+        let locationPicker = LocationPickerViewController()
+        
         locationPicker.completion = { location in
             self.latitude = location?.coordinate.latitude
             self.longitude = location?.coordinate.longitude
- 
+            
         }
         
         navigationController?.pushViewController(locationPicker, animated: true)
@@ -38,31 +40,39 @@ class StartTripViewController: UIViewController {
         guard let homeVC = segue.destination as? HomeViewController else{return}
         guard let latitude = latitude else {return}
         guard let longitude = longitude else {return}
+        
         homeVC.latitude = latitude
         homeVC.longitude = longitude
         
+        if(genderSegmented.selectedSegmentIndex == 0){
+            homeVC.gender = .male
+        }
+        else{
+            homeVC.gender = .female
+        }
+        
         
     }
     
     
     
-    @IBAction func startTripButtonPressed(_ sender: UIButton) {
-        
+   @IBAction func unwindToStartTrip(segue:UIStoryboardSegue) {
+    
     }
     
     
     
     
-
-
-
+    
+    
+    
 }
 
 
 
 
-    
-    
- 
+
+
+
 
 

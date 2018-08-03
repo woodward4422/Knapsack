@@ -18,8 +18,9 @@
 		7A19F19F21110F7C00215534 /* StartTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F19E21110F7C00215534 /* StartTripViewController.swift */; };
 		7A19F1A1211221AE00215534 /* ConstructAPILink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A0211221AE00215534 /* ConstructAPILink.swift */; };
 		7A19F1A42112337B00215534 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A32112337B00215534 /* CoreDataHelper.swift */; };
-		7A19F1A6211239E500215534 /* ClothingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A5211239E500215534 /* ClothingModel.swift */; };
+		7A19F1A6211239E500215534 /* ClothingModelLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A5211239E500215534 /* ClothingModelLogic.swift */; };
 		7A19F1A821125A3200215534 /* ClothesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A721125A3200215534 /* ClothesTableViewCell.swift */; };
+		7A19F1AC211274A900215534 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1AB211274A900215534 /* Gender.swift */; };
 		7C0032F937F4987C9D6D14D0 /* Pods_Knapsack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAE1647CD56F81CA328079B /* Pods_Knapsack.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +40,9 @@
 		7A19F19E21110F7C00215534 /* StartTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTripViewController.swift; sourceTree = "<group>"; };
 		7A19F1A0211221AE00215534 /* ConstructAPILink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructAPILink.swift; sourceTree = "<group>"; };
 		7A19F1A32112337B00215534 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
-		7A19F1A5211239E500215534 /* ClothingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingModel.swift; sourceTree = "<group>"; };
+		7A19F1A5211239E500215534 /* ClothingModelLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingModelLogic.swift; sourceTree = "<group>"; };
 		7A19F1A721125A3200215534 /* ClothesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesTableViewCell.swift; sourceTree = "<group>"; };
+		7A19F1AB211274A900215534 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		BCC9C734BD2837D2732A3CE6 /* Pods-Knapsack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knapsack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Knapsack/Pods-Knapsack.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +97,7 @@
 		7A0BA3642110B9200065339C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7A19F1A5211239E500215534 /* ClothingModel.swift */,
+				7A19F1A5211239E500215534 /* ClothingModelLogic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				7A19F1A32112337B00215534 /* CoreDataHelper.swift */,
+				7A19F1AB211274A900215534 /* Gender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -293,12 +296,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A19F1A821125A3200215534 /* ClothesTableViewCell.swift in Sources */,
+				7A19F1AC211274A900215534 /* Gender.swift in Sources */,
 				7A19F19B2110DEEE00215534 /* Constants.swift in Sources */,
 				7A0BA3692110B9980065339C /* WeatherService.swift in Sources */,
 				7A19F1A42112337B00215534 /* CoreDataHelper.swift in Sources */,
 				7A19F19F21110F7C00215534 /* StartTripViewController.swift in Sources */,
 				7A0BA352210FF04F0065339C /* HomeViewController.swift in Sources */,
-				7A19F1A6211239E500215534 /* ClothingModel.swift in Sources */,
+				7A19F1A6211239E500215534 /* ClothingModelLogic.swift in Sources */,
 				7A0BA350210FF04F0065339C /* AppDelegate.swift in Sources */,
 				7A0BA358210FF04F0065339C /* Knapsack.xcdatamodeld in Sources */,
 				7A19F1A1211221AE00215534 /* ConstructAPILink.swift in Sources */,

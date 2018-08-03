@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var longitude: Double?
     var latitude: Double?
     var clothes = [String]()
+    var gender: Gender = .none
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -28,12 +29,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view, typically from a nib.
         guard let longitude = longitude else {return}
         guard let latitude = latitude else {return}
+//        guard let gender = gender else {return}
         let weatherURL = ConstructAPILink.constructWeatherLink(latitude: latitude, longitude: longitude)
         let locationURL = ConstructAPILink.constructLocationLink(latitude: latitude, longitude: longitude)
         WeatherService.getWeather(url: weatherURL) { (temp) in
-        self.clothes = ClothingModel.getClothing(temp: temp)
-           let roundedTemp = Int(temp)
-            let sanitizedWeatherTemp = String(roundedTemp) + "º"
+        self.clothes = ClothingModelLogic.getClothing(temp: temp, gender:self.gender)
+        let roundedTemp = Int(temp)
+        let sanitizedWeatherTemp = String(roundedTemp) + "º"
             
             self.temperatureLabel.text = "\(sanitizedWeatherTemp)"
             
@@ -62,7 +64,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
   
-   
+    @IBAction func newTripButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToStartTrip", sender: self)
+    }
+    
 
 
 }
