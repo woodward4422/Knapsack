@@ -16,6 +16,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    var fromDate: String?
+    var toDate: String?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
