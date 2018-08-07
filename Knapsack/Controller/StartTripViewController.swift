@@ -213,4 +213,3 @@ extension StartTripViewController:  CLLocationManagerDelegate, GMSMapViewDelegat
 
 
 
-

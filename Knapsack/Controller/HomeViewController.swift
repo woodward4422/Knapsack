@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var longitude: Double?
     var latitude: Double?
-    var clothes = [String]()
+//    var clothes = [String]()
     var clothingData = [Clothing]()
     var gender: Gender = .none
    
@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let weatherURL = ConstructAPILink.constructWeatherLink(latitude: latitude, longitude: longitude, toDate: toDate)
             let locationURL = ConstructAPILink.constructLocationLink(latitude: latitude, longitude: longitude)
             WeatherService.getWeather(url: weatherURL) { (temp) in
-                self.clothes = ClothingModelLogic.getClothing(temp: temp, gender:self.gender)
+                let clothes = ClothingModelLogic.getClothing(temp: temp, gender:self.gender)
                 
                 let roundedTemp = Int(temp)
                 let coreTemp = CoreDataHelper.newTemperature()
@@ -54,23 +54,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 self.temperatureLabel.text = "\(sanitizedWeatherTemp)"
                 
-                for item in self.clothes {
+                var clothingItemArray = [Clothing]()
+                for item in clothes {
                     let clothingItem = CoreDataHelper.newClothingItem()
                     clothingItem.title = item
-                    CoreDataHelper.saveClothing()
+                    clothingItemArray.append(clothingItem)
                 }
-                self.clothingData = CoreDataHelper.retrieveClothing()
+                CoreDataHelper.saveClothing()
+                self.clothingData = clothingItemArray
+                self.tableView.reloadData()
                 
                
-                print(self.clothingData)
+//                print(self.clothingData)
                 
             }
             
             
             WeatherService.getLocation(url: locationURL) { (location) in
                 self.locationLabel.text = location
+                
                 let coreLocationItem = CoreDataHelper.newLocation()
                 coreLocationItem.locName = location
+                
+                //TODO: store in UserDefaults
             }
             // Hide the navigation bar on the this view controller
             
@@ -79,6 +85,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let temperature = CoreDataHelper.retrieveTemperature()
             temperatureLabel.text = String(temperature[0].tempValue)
             let location = CoreDataHelper.retrieveLocation()
+            //TODO: store in UserDefaults
+            
             locationLabel.text = location[0].locName
             tableView.reloadData()
         }
@@ -103,16 +111,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "clothesCell", for: indexPath) as! ClothesTableViewCell
        
+        cell.delegate = self
         
-        if let btnChk = cell.contentView.viewWithTag(2) as? UIButton {
-            btnChk.addTarget(self, action: #selector(checkboxClicked(_ :)), for: .touchUpInside)
-        }
-        if let btnDelete = cell.contentView.viewWithTag(3) as? UIButton {
-            btnDelete.addTarget(self, action: "deleteButtonPressed", for: .touchUpInside)
-        }
+//        if let btnChk = cell.contentView.viewWithTag(2) as? UIButton {
+//            btnChk.addTarget(self, action: #selector(checkboxClicked(_ :)), for: .touchUpInside)
+//        }
+//        if let btnDelete = cell.contentView.viewWithTag(3) as? UIButton {
+//            btnDelete.addTarget(self, action: "deleteButtonPressed", for: .touchUpInside)
+//        }
      
         let clothingItem = clothingData[indexPath.row]
-        cell.clothesLabel.text = clothingItem.title
+        cell.configure(clothing: clothingItem)
+        
         return cell
         
     }
@@ -156,5 +166,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 
 
+}
+
+extension HomeViewController: ClothingTableViewCellDelegate {
+    
+    func clothing(_ cell: ClothesTableViewCell, didTapOn checkButton: UIButton) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return assertionFailure("cell not found for the tapped button \(checkButton) inside this cell \(cell)")
+        }
+        
+        let selectedClothingItem = clothingData[indexPath.row]
+        selectedClothingItem.isChecked = checkButton.isSelected
+        CoreDataHelper.saveClothing()
+    }
 }
 

@@ -151,6 +151,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Checkmarkempty"/>
                                                     <state key="selected" image="Checkmark"/>
+                                                    <connections>
+                                                        <action selector="pressCheckbox:" destination="WIp-JC-8Jf" eventType="touchUpInside" id="TbW-ar-eSR"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHP-LY-gGN">
                                                     <rect key="frame" x="323" y="3" width="37" height="35"/>
@@ -160,6 +163,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkButton" destination="kqs-mN-aD7" id="nYJ-3a-jMc"/>
                                             <outlet property="clothesLabel" destination="FDp-6W-KpV" id="UbI-Ix-RKm"/>
                                         </connections>
                                     </tableViewCell>
@@ -222,7 +226,6 @@
         <image name="delete_Button" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5b8-DP-iTP"/>
         <segue reference="bbT-vC-xT3"/>
     </inferredMetricsTieBreakers>
 </document>
