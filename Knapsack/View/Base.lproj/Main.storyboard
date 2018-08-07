@@ -13,7 +13,7 @@
         <!--Start Trip View Controller-->
         <scene sceneID="eby-JH-f4O">
             <objects>
-                <viewController id="WvT-HS-ZKC" customClass="StartTripViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="b" id="WvT-HS-ZKC" customClass="StartTripViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bWf-Jn-vV9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,13 +33,6 @@
                                     <segment title="Female"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-No-iO4">
-                                <rect key="frame" x="21" y="193" width="92" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWw-Pa-WSV">
                                 <rect key="frame" x="103" y="568" width="168" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,18 +41,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="wZu-Aa-1Sz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="an8-t0-gbY">
-                                <rect key="frame" x="261" y="188" width="74" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Set ">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="locationButtonPressed:" destination="WvT-HS-ZKC" eventType="touchUpInside" id="HTk-Og-kKc"/>
+                                    <action selector="startTripButtonPressed:" destination="WvT-HS-ZKC" eventType="touchUpInside" id="7jP-9J-MQL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Arrival Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqT-hD-YiW">
@@ -90,6 +72,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-No-iO4">
+                                <rect key="frame" x="22" y="165" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v2B-Ni-rOv">
+                                <rect key="frame" x="31" y="194" width="316" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="s6s-Tr-LYj"/>
@@ -98,18 +94,21 @@
                     <connections>
                         <outlet property="genderSegmented" destination="JHl-AM-1qw" id="AUk-9y-j6Y"/>
                         <outlet property="inputTextField" destination="roC-ku-KT2" id="C1Z-2g-YcE"/>
-                        <outlet property="locationButton" destination="an8-t0-gbY" id="sWW-kK-d8y"/>
                         <outlet property="outputTextField" destination="vu6-Su-gms" id="bl2-T3-aTf"/>
+                        <outlet property="setLocationField" destination="v2B-Ni-rOv" id="ghE-uv-uIW"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="showHomeViewController" modalTransitionStyle="flipHorizontal" id="5b8-DP-iTP"/>
+                        <segue destination="MkM-In-UhD" kind="unwind" identifier="unwindToHomeViewController" unwindAction="unwindToHomeViewControllerWithSegue:" id="XdJ-ln-4eF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owS-sR-bqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MkM-In-UhD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="156" y="124.58770614692655"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="a" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,12 +127,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-Df-i22">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-Df-i22">
                                 <rect key="frame" x="0.0" y="192" width="375" height="368"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clothesCell" id="WIp-JC-8Jf" customClass="ClothesTableViewCell" customModule="Knapsack" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="clothesCell" id="WIp-JC-8Jf" customClass="ClothesTableViewCell" customModule="Knapsack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WIp-JC-8Jf" id="Dgx-rj-F37">
@@ -147,6 +146,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqs-mN-aD7">
+                                                    <rect key="frame" x="285" y="6" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="Checkmarkempty"/>
+                                                    <state key="selected" image="Checkmark"/>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHP-LY-gGN">
+                                                    <rect key="frame" x="323" y="3" width="37" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="delete_Button"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -178,7 +188,8 @@
                         <outlet property="locationLabel" destination="Sqg-Gt-K4B" id="7iv-5C-uXu"/>
                         <outlet property="tableView" destination="PS3-Df-i22" id="FUD-8C-2tU"/>
                         <outlet property="temperatureLabel" destination="A9g-0O-jbB" id="vx7-cO-ME9"/>
-                        <segue destination="QHu-6R-QyD" kind="unwind" identifier="unwindToStartTrip" unwindAction="unwindToStartTripWithSegue:" id="4H8-Rj-edG"/>
+                        <segue destination="QHu-6R-QyD" kind="unwind" identifier="unwindToStartTripViewController" unwindAction="unwindToStartTripWithSegue:" id="4H8-Rj-edG"/>
+                        <segue destination="WvT-HS-ZKC" kind="presentation" identifier="showTripViewController" modalTransitionStyle="flipHorizontal" id="bbT-vC-xT3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -205,4 +216,13 @@
             <point key="canvasLocation" x="-783.20000000000005" y="124.58770614692655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Checkmark" width="30" height="30"/>
+        <image name="Checkmarkempty" width="30" height="30"/>
+        <image name="delete_Button" width="48" height="48"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5b8-DP-iTP"/>
+        <segue reference="bbT-vC-xT3"/>
+    </inferredMetricsTieBreakers>
 </document>

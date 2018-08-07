@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
 struct WeatherService {
     
@@ -73,7 +74,15 @@ struct WeatherService {
                 print(error)
             }
         }
-        
-        
+    }
+    
+    static func getGeoLocation(location:String, completion: @escaping (CLLocationDegrees, CLLocationDegrees) -> Void) {
+        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
+            if error == nil {
+                if let location = placemarks?.first?.location {
+                    completion(location.coordinate.longitude, location.coordinate.latitude)
+                }
+            }
+        }
     }
 }

@@ -7,39 +7,56 @@
 //
 
 import UIKit
-import LocationPicker
+import GooglePlaces
+import GoogleMaps
+
 class StartTripViewController: UIViewController {
     var longitude: Double?
     var latitude: Double?
     var gender: Gender?
-    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var genderSegmented: UISegmentedControl!
     private var datePicker1 = UIDatePicker()
     private var datePicker2 = UIDatePicker()
     let dateFormatter1 = DateFormatter()
     let dateFormatter2 = DateFormatter()
+     var locationManager = CLLocationManager()
     
+    @IBOutlet weak var setLocationField: UITextField!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputTextField: UITextField!
     
     
+    deinit {
+        print("Start View Trip Deleted")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "isFirstScreen")
+        GMSPlacesClient.provideAPIKey(Constants.GPAPIKey)
+        GMSServices.provideAPIKey(Constants.GPAPIKey)
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
         
-        
+         setLocationField.delegate = self
         datePicker1 = UIDatePicker()
+        datePicker1.minimumDate = Date()
         datePicker1.datePickerMode = .date
         datePicker1.addTarget(self, action: #selector(StartTripViewController.dateChanged(datePicker:)), for: .valueChanged)
         
         datePicker2 = UIDatePicker()
+        datePicker2.minimumDate = Date()
         datePicker2.datePickerMode = .date
         datePicker2.addTarget(self, action: #selector(StartTripViewController.dateChanged(datePicker:)), for: .valueChanged)
         
          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StartTripViewController.viewTapped(gestureRecognizer:)))
         
          view.addGestureRecognizer(tapGesture)
-        
+    
+
         inputTextField.inputView = datePicker1
         outputTextField.inputView = datePicker2
         
@@ -47,38 +64,30 @@ class StartTripViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func locationButtonPressed(_ sender: Any) {
-        locationButton.backgroundColor = UIColor.green
-        let locationPicker = LocationPickerViewController()
         
-        locationPicker.completion = { location in
-            self.latitude = location?.coordinate.latitude
-            self.longitude = location?.coordinate.longitude
-            
-        }
-        
-        navigationController?.pushViewController(locationPicker, animated: true)
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
-        if(inputTextField.text == "" || outputTextField.text == ""){
-            let alert = UIAlertController(title: "No Date set", message: "Please set an arrival and departure date", preferredStyle: UIAlertControllerStyle.alert)
+        if(inputTextField.text == "" || outputTextField.text == "" || setLocationField.text == ""){
+            let alert = UIAlertController(title: "Information Missing", message: "Please make sure to fill out all the fields to begin packing", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+      
         
         guard let homeVC = segue.destination as? HomeViewController else{return}
+
+        
+
         guard let latitude = latitude else {return}
         guard let longitude = longitude else {return}
         
-       
+      
         homeVC.latitude = latitude
         homeVC.longitude = longitude
         homeVC.fromDate = inputTextField.text
         homeVC.toDate = outputTextField.text
+     
+
         
         if(genderSegmented.selectedSegmentIndex == 0){
             homeVC.gender = .male
@@ -92,9 +101,9 @@ class StartTripViewController: UIViewController {
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         
-        
-        dateFormatter1.dateFormat = "yyyy-mm-dd"
-        dateFormatter2.dateFormat = "yyyy-mm-dd"
+        datePicker2.minimumDate = datePicker1.date
+        dateFormatter1.dateFormat = "yyyy-MM-dd"
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
         
         
         inputTextField.text = dateFormatter1.string(from: datePicker1.date)
@@ -131,8 +140,68 @@ class StartTripViewController: UIViewController {
     
     
  
+  
+    @IBAction func startTripButtonPressed(_ sender: Any) {
+        
+        
+        if let parentVc = self.presentingViewController {
+             performSegue(withIdentifier:"unwindToHomeViewController" , sender: nil)
+        } else {
+            performSegue(withIdentifier:"showHomeViewController" , sender: nil)
+        }
+    }
     
     
+    
+    
+}
+
+extension StartTripViewController:  CLLocationManagerDelegate, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate, UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        let filter = GMSAutocompleteFilter()
+        autoCompleteController.autocompleteFilter = filter
+        
+        self.locationManager.startUpdatingLocation()
+        self.present(autoCompleteController, animated: true, completion: nil)
+        return false
+        
+        
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        setLocationField.text = place.formattedAddress
+        guard let formatedAdress = place.formattedAddress else {return}
+        WeatherService.getGeoLocation(location:formatedAdress) { (lat, long) in
+            print("Location: \(lat), \(long)")
+            self.longitude = lat
+            self.latitude = long
+        }
+        self.dismiss(animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("ERROR AUTO COMPLETE \(error)")
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while getting location \(error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
+    }
     
     
 }

@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        configureInitialRootViewController(for: window)
+        
         return true
     }
 
@@ -90,4 +92,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
+
+
+extension AppDelegate {
+    func configureInitialRootViewController(for window: UIWindow?) {
+        let defaults = UserDefaults.standard
+        var initialViewController: UIViewController
+
+        let initialScreen = defaults.bool(forKey: "isFirstScreen")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if(initialScreen == true){
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "b")
+        }
+        else{
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "a")
+        }
+
+        window?.rootViewController = initialViewController
+        window?.makeKeyAndVisible()
+    }
+}
+
 

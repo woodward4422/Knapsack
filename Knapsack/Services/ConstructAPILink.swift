@@ -10,8 +10,8 @@ import Foundation
 
 struct ConstructAPILink{
     
-    static func constructWeatherLink(latitude: Double , longitude: Double) -> String{
-        var weatherLink = "https://api.darksky.net/forecast/f169470b0e9484eb75680a0a9d5b51b3/\(latitude),\(longitude),2018-07-22T06:24:15?exclude=currently,flags"
+    static func constructWeatherLink(latitude: Double , longitude: Double, toDate: String) -> String{
+        var weatherLink = "https://api.darksky.net/forecast/f169470b0e9484eb75680a0a9d5b51b3/\(latitude),\(longitude),\(toDate)T06:24:15?exclude=currently,flags"
         return weatherLink
     }
     
