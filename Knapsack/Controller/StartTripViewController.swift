@@ -21,6 +21,7 @@ class StartTripViewController: UIViewController {
     let dateFormatter2 = DateFormatter()
      var locationManager = CLLocationManager()
     
+    @IBOutlet weak var packButton: UIButton!
     @IBOutlet weak var setLocationField: UITextField!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputTextField: UITextField!
@@ -39,7 +40,10 @@ class StartTripViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+       
         locationManager.startMonitoringSignificantLocationChanges()
+        
+        
         
          setLocationField.delegate = self
         datePicker1 = UIDatePicker()
@@ -142,7 +146,6 @@ class StartTripViewController: UIViewController {
  
   
     @IBAction func startTripButtonPressed(_ sender: Any) {
-        
         
         if let parentVc = self.presentingViewController {
              performSegue(withIdentifier:"unwindToHomeViewController" , sender: nil)

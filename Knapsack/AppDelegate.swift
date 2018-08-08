@@ -101,14 +101,15 @@ extension AppDelegate {
         var initialViewController: UIViewController
 
         let initialScreen = defaults.bool(forKey: "isFirstScreen")
+        print(initialScreen)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if(initialScreen == true){
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "b")
+        if(initialScreen == false){
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "startTrip")
         }
         else{
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "a")
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "home")
         }
 
         window?.rootViewController = initialViewController

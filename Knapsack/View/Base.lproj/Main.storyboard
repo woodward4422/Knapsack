@@ -13,7 +13,7 @@
         <!--Start Trip View Controller-->
         <scene sceneID="eby-JH-f4O">
             <objects>
-                <viewController storyboardIdentifier="b" id="WvT-HS-ZKC" customClass="StartTripViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startTrip" id="WvT-HS-ZKC" customClass="StartTripViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bWf-Jn-vV9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,17 +33,6 @@
                                     <segment title="Female"/>
                                 </segments>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWw-Pa-WSV">
-                                <rect key="frame" x="103" y="568" width="168" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Start Packing!">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startTripButtonPressed:" destination="WvT-HS-ZKC" eventType="touchUpInside" id="7jP-9J-MQL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Arrival Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqT-hD-YiW">
                                 <rect key="frame" x="21" y="284" width="94" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,14 +48,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Arrival Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roC-ku-KT2">
-                                <rect key="frame" x="87" y="318" width="174" height="30"/>
+                                <rect key="frame" x="31" y="318" width="316" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Departure Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-Su-gms">
-                                <rect key="frame" x="87" y="432" width="174" height="30"/>
+                                <rect key="frame" x="31" y="432" width="316" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -86,6 +75,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWw-Pa-WSV">
+                                <rect key="frame" x="93" y="554" width="190" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start Packing!">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTripButtonPressed:" destination="WvT-HS-ZKC" eventType="touchUpInside" id="7jP-9J-MQL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="s6s-Tr-LYj"/>
@@ -95,6 +95,7 @@
                         <outlet property="genderSegmented" destination="JHl-AM-1qw" id="AUk-9y-j6Y"/>
                         <outlet property="inputTextField" destination="roC-ku-KT2" id="C1Z-2g-YcE"/>
                         <outlet property="outputTextField" destination="vu6-Su-gms" id="bl2-T3-aTf"/>
+                        <outlet property="packButton" destination="CWw-Pa-WSV" id="WtZ-QT-5Ii"/>
                         <outlet property="setLocationField" destination="v2B-Ni-rOv" id="ghE-uv-uIW"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="showHomeViewController" modalTransitionStyle="flipHorizontal" id="5b8-DP-iTP"/>
                         <segue destination="MkM-In-UhD" kind="unwind" identifier="unwindToHomeViewController" unwindAction="unwindToHomeViewControllerWithSegue:" id="XdJ-ln-4eF"/>
@@ -108,7 +109,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="a" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Knapsack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,18 +148,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqs-mN-aD7">
-                                                    <rect key="frame" x="285" y="6" width="30" height="30"/>
+                                                    <rect key="frame" x="317" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Checkmarkempty"/>
                                                     <state key="selected" image="Checkmark"/>
                                                     <connections>
                                                         <action selector="pressCheckbox:" destination="WIp-JC-8Jf" eventType="touchUpInside" id="TbW-ar-eSR"/>
                                                     </connections>
-                                                </button>
-                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHP-LY-gGN">
-                                                    <rect key="frame" x="323" y="3" width="37" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="delete_Button"/>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -223,9 +219,9 @@
     <resources>
         <image name="Checkmark" width="30" height="30"/>
         <image name="Checkmarkempty" width="30" height="30"/>
-        <image name="delete_Button" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5b8-DP-iTP"/>
         <segue reference="bbT-vC-xT3"/>
     </inferredMetricsTieBreakers>
 </document>

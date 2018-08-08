@@ -54,69 +54,7 @@ struct CoreDataHelper {
         }
     }
     
+
     
-    //Temperature
-    
-    static func newTemperature() -> Temperature {
-        let temperature = NSEntityDescription.insertNewObject(forEntityName: "Temperature", into: context) as! Temperature
-        return temperature
-        
-    }
-    
-    static func saveTemperature() {
-        do {
-            try context.save()
-        } catch let error {
-            print("Could not save \(error.localizedDescription)")
-        }
-    }
-    
-    static func deleteTemperature(temp: Temperature) {
-        context.delete(temp)
-       saveTemperature()
-    }
-    
-    static func retrieveTemperature() -> [Temperature] {
-        let fetchRequest = NSFetchRequest<Temperature>(entityName: "Temperature")
-        do {
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return []
-        }
-    }
-    
-    //Location
-    
-    static func newLocation() -> Location {
-        let location = NSEntityDescription.insertNewObject(forEntityName: "Location", into: context) as! Location
-        return location
-        
-    }
-    
-    static func saveLocation() {
-        do {
-            try context.save()
-        } catch let error {
-            print("Could not save \(error.localizedDescription)")
-        }
-    }
-    
-    static func deleteLocation(location: Location) {
-        context.delete(location)
-        saveLocation()
-    }
-    
-    static func retrieveLocation() -> [Location] {
-        let fetchRequest = NSFetchRequest<Location>(entityName: "Location")
-        do {
-            let results = try context.fetch(fetchRequest)
-            return results
-        } catch let error {
-            print("Could not fetch \(error.localizedDescription)")
-            return []
-        }
-    }
-    
+   
 }

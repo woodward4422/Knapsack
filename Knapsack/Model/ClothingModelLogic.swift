@@ -20,7 +20,7 @@ struct ClothingModelLogic{
                 return["Light Colored Tee Shirt","Athletic Shorts","Sandals","Safari Hat","Sneakers", "Bathing Suit", "Short Sleeved Night Shirt","Loose Underwear", "Short Cut Socks", "Sunglasses", "Cargo Shorts", "Polo Shirt", "Short Sleeve Button Up" ]
             case 90...100:
                 return["Sandals","Sneakers","Dress Shorts","Bathing Suit","Short Sleeve Button Up","Light Colored Shirts","Loose Underwear","Short Sleeve Night Wear","Athletic Shorts","Polo Shirt","Light Windbreaker","Athletic Shirt","Baseball Cap","Sunglasses", "Short Cut Socks","Dress socks","Muscle Tee"]
-            case 75...89:
+            case 75...90:
                 return["Light Short Sleeve Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Short Sleeve Shirt","Light Jacket","Windbreaker","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Muscle Tee","Jeans","Underwear"]
             case 60...75:
                 return ["Short Sleeve Casual Shirts","Long Sleeve Casual Wear Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Short Sleeve Shirt","Button Down Long Sleeve","Jacket","Windbreakers","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Long Cut Socks","Muscle Tee","Jeans","Sweatpants","Sneakers","Sandals","Underwear"]

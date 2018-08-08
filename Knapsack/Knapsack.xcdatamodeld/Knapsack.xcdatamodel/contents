@@ -4,15 +4,7 @@
         <attribute name="isChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
-        <attribute name="locName" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Temperature" representedClassName="Temperature" syncable="YES" codeGenerationType="class">
-        <attribute name="tempValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
     <elements>
         <element name="Clothing" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Location" positionX="-36" positionY="9" width="128" height="60"/>
-        <element name="Temperature" positionX="-54" positionY="-9" width="128" height="60"/>
     </elements>
 </model>

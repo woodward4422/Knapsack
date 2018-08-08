@@ -45,11 +45,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let locationURL = ConstructAPILink.constructLocationLink(latitude: latitude, longitude: longitude)
             WeatherService.getWeather(url: weatherURL) { (temp) in
                 let clothes = ClothingModelLogic.getClothing(temp: temp, gender:self.gender)
-                
+                let defaults = UserDefaults.standard
                 let roundedTemp = Int(temp)
-                let coreTemp = CoreDataHelper.newTemperature()
-                coreTemp.tempValue = Int16(roundedTemp)
-                CoreDataHelper.saveTemperature()
+                defaults.set(roundedTemp, forKey: "temperature")
+                
+                
                 let sanitizedWeatherTemp = String(roundedTemp) + "º"
                 
                 self.temperatureLabel.text = "\(sanitizedWeatherTemp)"
@@ -72,9 +72,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             WeatherService.getLocation(url: locationURL) { (location) in
                 self.locationLabel.text = location
-                
-                let coreLocationItem = CoreDataHelper.newLocation()
-                coreLocationItem.locName = location
+                let defaults = UserDefaults.standard
+                defaults.set(location, forKey: "location")
                 
                 //TODO: store in UserDefaults
             }
@@ -82,12 +81,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         else{
-            let temperature = CoreDataHelper.retrieveTemperature()
-            temperatureLabel.text = String(temperature[0].tempValue)
-            let location = CoreDataHelper.retrieveLocation()
+            let defaults = UserDefaults.standard
+            let temperature = defaults.integer(forKey: "temperature")
+            temperatureLabel.text = String(temperature)+"º"
+            let location = defaults.string(forKey:"location")
             //TODO: store in UserDefaults
             
-            locationLabel.text = location[0].locName
+            locationLabel.text = location
             tableView.reloadData()
         }
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -96,7 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
-        defaults.set(false, forKey:"isFirstScreen")
+
         // Do any additional setup after loading the view, typically from a nib.
 
     }
@@ -138,6 +138,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
   
     @IBAction func newTripButtonPressed(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey:"isFirstScreen")
+       
+        for item in clothingData {
+            CoreDataHelper.deleteClothing(clothing: item)
+        }
+        CoreDataHelper.saveClothing()
+       
+     
+        defaults.removeObject(forKey:"temperature")
+        defaults.removeObject(forKey:"location")
+        
+        
+        
         
         if let parentVC = self.presentingViewController {
              performSegue(withIdentifier:"unwindToStartTripViewController" , sender: nil)
@@ -152,12 +166,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-//    func deleteButtonPressed(sender : UIButton!) {
-//        self.dataSource.removeAtIndex(myIndex) /
-//        self.tableview!.reloadData()
-//        // you can also call this method if you want to reduce the load, will also allow you to choose an animation
-//        //self.tableView!.deleteRowsAtIndexPaths([NSIndexPath(forItem: myIndex, inSection: 0)], withRowAnimation: nil)
-//    }
+
   
     
     
