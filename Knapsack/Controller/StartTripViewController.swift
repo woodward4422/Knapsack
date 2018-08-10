@@ -9,7 +9,7 @@
 import UIKit
 import GooglePlaces
 import GoogleMaps
-
+import AVFoundation
 class StartTripViewController: UIViewController {
     var longitude: Double?
     var latitude: Double?
@@ -19,12 +19,17 @@ class StartTripViewController: UIViewController {
     private var datePicker2 = UIDatePicker()
     let dateFormatter1 = DateFormatter()
     let dateFormatter2 = DateFormatter()
-     var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
+    
     
     @IBOutlet weak var packButton: UIButton!
     @IBOutlet weak var setLocationField: UITextField!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputTextField: UITextField!
+    
+    var avPlayer: AVPlayer!
+    var avPlayerLayer: AVPlayerLayer!
+    var paused: Bool = false
     
     
     deinit {
@@ -33,6 +38,27 @@ class StartTripViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: Add video Login with loop so it doesnt crash
+//        guard let theURL = Bundle.main.path(forResource: "sanfran", ofType: "mp4") else {
+//            print("Nothing")
+//            return}
+//        let videoURL = URL(fileURLWithPath: theURL)
+//        avPlayer = AVPlayer(url:videoURL)
+//        avPlayerLayer = AVPlayerLayer(player: avPlayer)
+//        avPlayerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+//        avPlayer.volume = 0
+//        avPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.none
+//
+//        avPlayerLayer.frame = view.layer.bounds
+//        view.backgroundColor = UIColor.clear;
+//        view.layer.insertSublayer(avPlayerLayer, at: 0)
+//        avPlayer.play()
+//
+//        NotificationCenter.default.addObserver(self,
+//                                                         selector: "playerItemDidReachEnd",
+//                                                         name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+//                                                         object: avPlayer.currentItem)
+//
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "isFirstScreen")
         GMSPlacesClient.provideAPIKey(Constants.GPAPIKey)
@@ -40,12 +66,12 @@ class StartTripViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-       
+        
         locationManager.startMonitoringSignificantLocationChanges()
         
         
         
-         setLocationField.delegate = self
+        setLocationField.delegate = self
         datePicker1 = UIDatePicker()
         datePicker1.minimumDate = Date()
         datePicker1.datePickerMode = .date
@@ -56,42 +82,44 @@ class StartTripViewController: UIViewController {
         datePicker2.datePickerMode = .date
         datePicker2.addTarget(self, action: #selector(StartTripViewController.dateChanged(datePicker:)), for: .valueChanged)
         
-         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StartTripViewController.viewTapped(gestureRecognizer:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(StartTripViewController.viewTapped(gestureRecognizer:)))
         
-         view.addGestureRecognizer(tapGesture)
-    
-
+        view.addGestureRecognizer(tapGesture)
+        
+        
         inputTextField.inputView = datePicker1
         outputTextField.inputView = datePicker2
+//        inputTextField.layer.cornerRadius = rounded ? inputTextField.size.height / 2 : 0
+//        inputTextField.clipsToBounds = true
         
         
         // Do any additional setup after loading the view.
     }
     
-        
+//    func playerItemDidReachEnd(notification: Notification){
+//        avPlayer.seek(to: kCMTimeZero)
+//        avPlayer.play()
+//    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      
-        if(inputTextField.text == "" || outputTextField.text == "" || setLocationField.text == ""){
-            let alert = UIAlertController(title: "Information Missing", message: "Please make sure to fill out all the fields to begin packing", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-      
+        
+        
         
         guard let homeVC = segue.destination as? HomeViewController else{return}
-
         
-
+        
+        
         guard let latitude = latitude else {return}
         guard let longitude = longitude else {return}
         
-      
+        
         homeVC.latitude = latitude
         homeVC.longitude = longitude
         homeVC.fromDate = inputTextField.text
         homeVC.toDate = outputTextField.text
-     
-
+        
+        
         
         if(genderSegmented.selectedSegmentIndex == 0){
             homeVC.gender = .male
@@ -102,6 +130,7 @@ class StartTripViewController: UIViewController {
         
         
     }
+    
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         
@@ -116,7 +145,7 @@ class StartTripViewController: UIViewController {
         
     }
     
- 
+    
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
         
@@ -138,19 +167,25 @@ class StartTripViewController: UIViewController {
     }
     
     
-   @IBAction func unwindToStartTrip(segue:UIStoryboardSegue) {
-    
+    @IBAction func unwindToStartTrip(segue:UIStoryboardSegue) {
+        
     }
     
     
- 
-  
+    
+    
     @IBAction func startTripButtonPressed(_ sender: Any) {
-        
-        if let parentVc = self.presentingViewController {
-             performSegue(withIdentifier:"unwindToHomeViewController" , sender: nil)
+        if(inputTextField.text == "" || outputTextField.text == "" || setLocationField.text == ""){
+            let alert = UIAlertController(title: "Information Missing", message: "Please make sure to fill out all the fields to begin packing", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
-            performSegue(withIdentifier:"showHomeViewController" , sender: nil)
+            if let parentVc = self.presentingViewController {
+                performSegue(withIdentifier:"unwindToHomeViewController" , sender: nil)
+            } else {
+                
+                performSegue(withIdentifier:"showHomeViewController" , sender: nil)
+            }
         }
     }
     

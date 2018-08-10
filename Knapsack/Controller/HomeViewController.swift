@@ -111,6 +111,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "clothesCell", for: indexPath) as! ClothesTableViewCell
        
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 0.5
+        let borderColor = UIColor.white
+        cell.layer.borderColor = borderColor.cgColor
+        
+       
         cell.delegate = self
         
 //        if let btnChk = cell.contentView.viewWithTag(2) as? UIButton {

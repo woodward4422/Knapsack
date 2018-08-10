@@ -21,6 +21,8 @@
 		7A19F1A6211239E500215534 /* ClothingModelLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A5211239E500215534 /* ClothingModelLogic.swift */; };
 		7A19F1A821125A3200215534 /* ClothesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1A721125A3200215534 /* ClothesTableViewCell.swift */; };
 		7A19F1AC211274A900215534 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19F1AB211274A900215534 /* Gender.swift */; };
+		7AEC5076211B63DF00D5B558 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC5075211B63DF00D5B558 /* RoundButton.swift */; };
+		7AEC5078211B671000D5B558 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC5077211B671000D5B558 /* GradientView.swift */; };
 		7C0032F937F4987C9D6D14D0 /* Pods_Knapsack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAE1647CD56F81CA328079B /* Pods_Knapsack.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		7A19F1A5211239E500215534 /* ClothingModelLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingModelLogic.swift; sourceTree = "<group>"; };
 		7A19F1A721125A3200215534 /* ClothesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesTableViewCell.swift; sourceTree = "<group>"; };
 		7A19F1AB211274A900215534 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		7AEC5075211B63DF00D5B558 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		7AEC5077211B671000D5B558 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientView.swift; path = "../../../../Downloads/Gradient-View-master/GradientView.swift"; sourceTree = "<group>"; };
 		BCC9C734BD2837D2732A3CE6 /* Pods-Knapsack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Knapsack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Knapsack/Pods-Knapsack.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,8 +109,10 @@
 		7A0BA3652110B9560065339C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AEC5077211B671000D5B558 /* GradientView.swift */,
 				7A0BA353210FF04F0065339C /* Main.storyboard */,
 				7A19F1A721125A3200215534 /* ClothesTableViewCell.swift */,
+				7AEC5075211B63DF00D5B558 /* RoundButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AEC5076211B63DF00D5B558 /* RoundButton.swift in Sources */,
 				7A19F1A821125A3200215534 /* ClothesTableViewCell.swift in Sources */,
 				7A19F1AC211274A900215534 /* Gender.swift in Sources */,
 				7A19F19B2110DEEE00215534 /* Constants.swift in Sources */,
@@ -309,6 +316,7 @@
 				7A0BA352210FF04F0065339C /* HomeViewController.swift in Sources */,
 				7A19F1A6211239E500215534 /* ClothingModelLogic.swift in Sources */,
 				7A0BA350210FF04F0065339C /* AppDelegate.swift in Sources */,
+				7AEC5078211B671000D5B558 /* GradientView.swift in Sources */,
 				7A0BA358210FF04F0065339C /* Knapsack.xcdatamodeld in Sources */,
 				7A19F1A1211221AE00215534 /* ConstructAPILink.swift in Sources */,
 			);
@@ -458,11 +466,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBGPXWFD5T;
 				INFOPLIST_FILE = Knapsack/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noahjwoodward.Knapsack;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noahjordanwoodward.Knapsack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -474,11 +485,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QBGPXWFD5T;
 				INFOPLIST_FILE = Knapsack/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.noahjwoodward.Knapsack;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noahjordanwoodward.Knapsack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

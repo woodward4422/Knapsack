@@ -21,13 +21,13 @@ struct ClothingModelLogic{
             case 90...100:
                 return["Sandals","Sneakers","Dress Shorts","Bathing Suit","Short Sleeve Button Up","Light Colored Shirts","Loose Underwear","Short Sleeve Night Wear","Athletic Shorts","Polo Shirt","Light Windbreaker","Athletic Shirt","Baseball Cap","Sunglasses", "Short Cut Socks","Dress socks","Muscle Tee"]
             case 75...90:
-                return["Light Short Sleeve Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Short Sleeve Shirt","Light Jacket","Windbreaker","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Muscle Tee","Jeans","Underwear"]
+                return["Short Sleeve Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Shirt","Light Jacket","Windbreaker","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Muscle Tee","Jeans","Underwear"]
             case 60...75:
-                return ["Short Sleeve Casual Shirts","Long Sleeve Casual Wear Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Short Sleeve Shirt","Button Down Long Sleeve","Jacket","Windbreakers","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Long Cut Socks","Muscle Tee","Jeans","Sweatpants","Sneakers","Sandals","Underwear"]
+                return ["Short Sleeve Shirts","Long Sleeve Casual Shirts","Athletic Shorts","Bathing Suit","Athletic Shirt","Dress Shorts","Khaki Pants","Button Down Short Sleeve Shirt","Button Down Long Sleeve","Jacket","Windbreakers","Button Down Long Sleeve","Polo Shirt","Sunglasses","Short Cut Socks","Long Cut Socks","Muscle Tee","Jeans","Sweatpants","Sneakers","Sandals","Underwear"]
             case 50...60:
-                return["Long Sleeve Casual Shirts","Sweater","Light Scarf","Hat that Covers Ears","Button Down Long Sleeve Shirt","Long Sleeve Pajama Shirt","Pajama Pants","Kahki Pants", "Jeans", "Sweatpants","Sneakers","Boots","Thick Socks","Jacket","Underwear"]
+                return["Long Sleeve Casual Shirts","Sweater","Light Scarf","Hat that Covers Ears","Button Down Shirt ","Long Sleeve Pajama Shirt","Pajama Pants","Kahki Pants", "Jeans", "Sweatpants","Sneakers","Boots","Thick Socks","Jacket","Underwear"]
             case -50...50:
-                return ["Long Sleeve Casual Shirts","Heavy Sweaters","Heavy Scarf","Winter Hat","Button Down Long Sleeve Shirt","Long Sleeve Pajama Shirt","Pajama Pants","Khaki Pants","Snow Pants", "Jeans", "Sweatpants","Sneakers","Snow Boots","Thick Socks","Jacket","Bulky Underwear","Gloves","Jacket","Sport Jacket","Dress Pants","Long Sleeve Dress Shirt"]
+                return ["Long Sleeve Casual Shirts","Heavy Sweaters","Heavy Scarf","Winter Hat","Button Down Long Sleeve","Long Sleeve Pajama Shirt","Pajama Pants","Khaki Pants","Snow Pants", "Jeans", "Sweatpants","Sneakers","Snow Boots","Thick Socks","Jacket","Bulky Underwear","Gloves","Jacket","Sport Jacket","Dress Pants","Long Sleeve Dress Shirt"]
             default:
                 return ["Error retrieving Clothes"]
                 
